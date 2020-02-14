@@ -1,7 +1,8 @@
-package ith.android.communicationkit
+package ith.signal.kit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.LiveData
 
 class MainActivity : AppCompatActivity() {
 

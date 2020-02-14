@@ -1,4 +1,4 @@
-package ith.android.communicationkit
+package ith.signal.kit
 
 import org.junit.Test
 
