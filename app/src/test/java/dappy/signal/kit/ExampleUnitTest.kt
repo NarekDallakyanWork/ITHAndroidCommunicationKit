@@ -1,4 +1,4 @@
-package ith.signal.kit
+package dappy.signal.kit
 
 import org.junit.Test
 

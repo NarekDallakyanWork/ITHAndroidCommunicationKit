@@ -1,6 +1,6 @@
-package ith.signal.kit.observable
+package dappy.signal.kit.observable
 
-import ith.signal.kit.model.Signal
+import dappy.signal.kit.model.Signal
 
 interface SignalActionObserver {
     /**
@@ -12,6 +12,11 @@ interface SignalActionObserver {
      * Called when the signaling is disconnected.
      */
     fun onDisconnected()
+
+    /**
+     * Called when the signaling have error.
+     */
+    fun onError(errorMessage: String)
 
     /**
      * Called when the have new signal.
