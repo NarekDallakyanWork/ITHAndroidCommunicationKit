@@ -1,2 +1,2 @@
 # ITHCommunicationKit
-Conference video and audio calls
+Conference video and audio call
