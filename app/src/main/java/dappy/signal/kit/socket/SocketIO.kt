@@ -19,7 +19,7 @@ class SocketIO : SignalAction {
     /**
      * create socket instance
      */
-    override fun connect(signalOption: SignalOption) {
+    override fun connect(signalOption: SignalOption): SignalAction {
         ObjectHelper.requireNonNull(signalOption, "SignalOption can't be null")
         this.signalOption = signalOption
         val opts = IO.Options()
@@ -27,6 +27,7 @@ class SocketIO : SignalAction {
         socket = IO.socket(signalOption.serverUrl, opts)
         listenSocket()
         socket.connect()
+        return this
     }
 
     /**

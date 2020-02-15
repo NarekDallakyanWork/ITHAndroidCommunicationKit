@@ -18,12 +18,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startSignaling() {
-       val aaa =  SocketIO()
+        val signalAction: SignalAction = SocketIO()
             .observe(object : SignalActionObserver {
                 override fun onConnected() {
                     println()
-                    Thread.sleep(1000)
-
                 }
 
                 override fun onDisconnected() {

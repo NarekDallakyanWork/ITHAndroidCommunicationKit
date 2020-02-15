@@ -5,7 +5,7 @@ import dappy.signal.kit.socket.SignalOption
 
 interface SignalAction {
 
-    fun connect(signalOption: SignalOption)
+    fun connect(signalOption: SignalOption): SignalAction
 
     fun sendSignal(signal: Signal)
 
