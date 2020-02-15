@@ -1,4 +1,4 @@
-package dappy.signal.kit.helper
+package ith.android.dappysignalkit.helper
 
 class ObjectHelper private constructor() {
     companion object {

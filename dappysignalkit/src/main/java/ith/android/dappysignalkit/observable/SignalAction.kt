@@ -1,7 +1,7 @@
-package dappy.signal.kit.observable
+package ith.android.dappysignalkit.observable
 
-import dappy.signal.kit.model.Signal
-import dappy.signal.kit.socket.SignalOption
+import ith.android.dappysignalkit.model.Signal
+import ith.android.dappysignalkit.socket.SignalOption
 
 interface SignalAction {
 

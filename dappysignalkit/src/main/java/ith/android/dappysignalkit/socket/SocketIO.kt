@@ -1,11 +1,11 @@
-package dappy.signal.kit.socket
+package ith.android.dappysignalkit.socket
 
-import dappy.signal.kit.helper.ObjectHelper
-import dappy.signal.kit.manager.SignalSubscribersManager
-import dappy.signal.kit.model.Signal
-import dappy.signal.kit.model.SignalState
-import dappy.signal.kit.observable.SignalAction
-import dappy.signal.kit.observable.SignalActionObserver
+import ith.android.dappysignalkit.helper.ObjectHelper
+import ith.android.dappysignalkit.manager.SignalSubscribersManager
+import ith.android.dappysignalkit.model.Signal
+import ith.android.dappysignalkit.model.SignalState
+import ith.android.dappysignalkit.observable.SignalAction
+import ith.android.dappysignalkit.observable.SignalActionObserver
 import io.socket.client.IO
 import io.socket.client.Socket
 

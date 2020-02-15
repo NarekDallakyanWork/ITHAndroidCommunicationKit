@@ -1,4 +1,4 @@
-package dappy.signal.kit.model
+package ith.android.dappysignalkit.model
 
 class SignalState {
 

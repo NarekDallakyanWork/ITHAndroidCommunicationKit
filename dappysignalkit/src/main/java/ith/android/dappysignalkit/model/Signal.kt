@@ -1,4 +1,4 @@
-package dappy.signal.kit.model
+package ith.android.dappysignalkit.model
 
 class Signal(val signal: Any) {
     fun get(): Any {

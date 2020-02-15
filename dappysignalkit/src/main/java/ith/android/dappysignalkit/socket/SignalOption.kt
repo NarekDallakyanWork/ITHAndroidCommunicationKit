@@ -1,4 +1,4 @@
-package dappy.signal.kit.socket
+package ith.android.dappysignalkit.socket
 
 class SignalOption(
     var serverUrl: String,

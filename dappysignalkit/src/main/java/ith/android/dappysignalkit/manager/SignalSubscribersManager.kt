@@ -1,8 +1,8 @@
-package dappy.signal.kit.manager
+package ith.android.dappysignalkit.manager
 
-import dappy.signal.kit.model.Signal
-import dappy.signal.kit.model.SignalState
-import dappy.signal.kit.observable.SignalActionObserver
+import ith.android.dappysignalkit.model.Signal
+import ith.android.dappysignalkit.model.SignalState
+import ith.android.dappysignalkit.observable.SignalActionObserver
 
 class SignalSubscribersManager {
 
