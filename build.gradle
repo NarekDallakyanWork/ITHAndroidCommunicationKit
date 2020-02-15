@@ -5,8 +5,7 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
-        gradlePluginPortal()
-        maven { url 'https://jitpack.io' }
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
@@ -22,7 +21,6 @@ allprojects {
         jcenter()
         maven {
             url 'https://jitpack.io'
-            credentials { username authToken }
         }
 
     }
