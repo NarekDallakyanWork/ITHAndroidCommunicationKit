@@ -59,9 +59,21 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    def lifecycle_version = "2.2.0"
+    // Mvvm
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // coil
+    implementation "io.coil-kt:coil:0.9.1"
+    // round image view
+    implementation 'com.joooonho:selectableroundedimageview:1.0.1'
+
+
     // permission library
     implementation 'com.karumi:dexter:6.0.0'
-    // load signaling module
+    // load modules
     implementation project(':call')
     implementation project(':libwebrtc')
+    implementation project(':common')
 }

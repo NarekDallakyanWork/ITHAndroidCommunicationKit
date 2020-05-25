@@ -29,6 +29,9 @@ class CallManager(
      */
     private var videoTrackFromCamera: VideoTrack? = null
 
+    /**
+     *  Peer connection
+     */
     private var factory: PeerConnectionFactory? = null
 
 
@@ -37,6 +40,7 @@ class CallManager(
     }
 
     fun establish() {
+
         webrtcHelper.addContext(context)
         webrtcHelper.addEglContext(rootEglBase)
         // get peerConnection factory

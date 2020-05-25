@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr format="boolean" name="mirror"/>
+    <attr format="boolean" name="overlaySurface"/>
+    <attr format="enum" name="scaleType">
+        <enum name="fit" value="0"/>
+        <enum name="fill" value="1"/>
+        <enum name="balanced" value="2"/>
+    </attr>
+    <declare-styleable name="VideoTextureView">
+        <attr name="mirror"/>
+        <attr name="scaleType"/>
+    </declare-styleable>
+    <declare-styleable name="VideoView">
+        <attr name="mirror"/>
+        <attr name="scaleType"/>
+        <attr name="overlaySurface"/>
+    </declare-styleable>
+</resources>

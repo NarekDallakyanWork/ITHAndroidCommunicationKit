@@ -16,7 +16,6 @@ import ithd.call.constants.WEBRTC.VIDEO_RESOLUTION_HEIGHT
 import ithd.call.constants.WEBRTC.VIDEO_RESOLUTION_WIDTH
 import ithd.call.constants.WEBRTC.VIDEO_TRACK_ID
 import ithd.call.constants.WEBRTC.VIDEO_VP8_INTEL_HW_ENCODER_FIELDTRIAL
-import ithd.call.interfaces.WebRtcEventListener
 import ithd.call.model.CallModel
 import ithd.call.sdp.MySdpObserver
 import ithd.call.sdp.SdpCallBack

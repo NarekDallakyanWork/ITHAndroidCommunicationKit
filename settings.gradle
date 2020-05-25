@@ -1,2 +1,2 @@
-include ':app', ':signalkit', ':call', ':libwebrtc'
+include ':app', ':signalkit', ':call', ':libwebrtc', ':common'
 rootProject.name='ITHAndroidCommunicationKit'

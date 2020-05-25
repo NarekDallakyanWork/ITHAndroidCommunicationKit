@@ -1,4 +1,4 @@
-package ithd.call.helper
+package ith.signal.helper
 
 class ObjectHelper private constructor() {
     companion object {
