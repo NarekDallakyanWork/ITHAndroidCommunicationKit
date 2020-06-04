@@ -16,5 +16,9 @@ class Params {
     enum class ParamName {
         EGL_BASE,
         CONTEXT,
+        URL,
+        EVENT_NAME,
+        ROOM_NAME,
+        RECONNECTION
     }
 }

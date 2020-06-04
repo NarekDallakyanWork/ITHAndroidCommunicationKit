@@ -1,6 +1,8 @@
 package ithd.call.helper
 
 import android.content.Context
+import ithd.call.interfaces.WebRtcEventListener
+import ithd.call.model.Participant
 import ithd.call.sdp.SdpCallBack
 import ithd.call.sdp.SessionDescription
 import org.webrtc.*
@@ -39,7 +41,19 @@ interface WebrtcHelperInterface {
 
     fun addRemoteSdp(
         participant: String,
-        sessionDescription: SessionDescription,
+        sessionDescription: org.webrtc.SessionDescription,
         videoTrackFromCamera: VideoTrack
     )
+
+    fun addOnIceCandidateListener(onIceCandidate: ((String?, String?, Int) -> Unit?)?)
+
+    /**
+     *  Webrtc event listener
+     */
+    fun addWebRtcListener(webRtcEventListener: WebRtcEventListener)
+
+    /**
+     * get all participants array
+     */
+    fun participants(): ArrayList<Participant>
 }

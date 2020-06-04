@@ -1,5 +1,6 @@
 package ithd.call.interfaces
 
+import ithd.call.model.Participant
 import org.webrtc.VideoTrack
 
 interface WebRtcEventListener {
@@ -13,13 +14,17 @@ interface WebRtcEventListener {
 
     fun onMicrophoneStateChanged(isSpeaker: Boolean)
 
-    fun onIceCandidate(
-        sdp: String?,
-        sdpMid: String?,
-        sdpMLineIndex: Int
+    fun onRemoteTrackAdded(
+        remoteVideoTrack: VideoTrack?,
+        participants: ArrayList<Participant>
     )
 
-    fun onRemoteTrackAdded(remoteVideoTrack: VideoTrack?)
-
     fun onPeerConnectionCreated(participant: String?)
+
+    /**
+     * Called when a participant has connected to a room.
+     */
+    fun onParticipantJoined(
+        allParticipants: List<Participant>, newParticipant: Participant
+    )
 }

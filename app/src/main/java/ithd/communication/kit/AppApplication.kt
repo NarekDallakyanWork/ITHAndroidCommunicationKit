@@ -5,7 +5,6 @@ import android.content.Context
 
 class AppApplication: Application() {
 
-
     companion object{
         var mContext: Context? = null
     }

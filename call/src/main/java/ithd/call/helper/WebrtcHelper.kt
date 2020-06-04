@@ -16,7 +16,9 @@ import ithd.call.constants.WEBRTC.VIDEO_RESOLUTION_HEIGHT
 import ithd.call.constants.WEBRTC.VIDEO_RESOLUTION_WIDTH
 import ithd.call.constants.WEBRTC.VIDEO_TRACK_ID
 import ithd.call.constants.WEBRTC.VIDEO_VP8_INTEL_HW_ENCODER_FIELDTRIAL
+import ithd.call.interfaces.WebRtcEventListener
 import ithd.call.model.CallModel
+import ithd.call.model.Participant
 import ithd.call.sdp.MySdpObserver
 import ithd.call.sdp.SdpCallBack
 import ithd.call.sdp.SessionDescription
@@ -24,6 +26,7 @@ import org.webrtc.*
 import org.webrtc.PeerConnection.*
 import org.webrtc.PeerConnection.Observer
 import java.util.*
+import kotlin.collections.ArrayList
 
 class WebrtcHelper : WebrtcHelperInterface {
     private val TAG = WebrtcHelper::class.java.name
@@ -34,6 +37,10 @@ class WebrtcHelper : WebrtcHelperInterface {
 
     // peer connection
     private lateinit var factory: PeerConnectionFactory
+
+    // listener
+    private lateinit var webRtcEventListener: WebRtcEventListener
+    private var onIceCandidateListener: ((String?, String?, Int) -> Unit?)? = null
 
     // audio
     private var localAudioTrack: AudioTrack? = null
@@ -47,6 +54,9 @@ class WebrtcHelper : WebrtcHelperInterface {
 
     // call model hashset
     private var callModels: HashSet<CallModel?> = HashSet()
+
+    // Participants
+    private val participants = ArrayList<Participant>()
 
     // call actions
     private var isAudioEnabled: Boolean = true
@@ -121,24 +131,38 @@ class WebrtcHelper : WebrtcHelperInterface {
         participant: String,
         videoTrackFromCamera: VideoTrack
     ): PeerConnection {
+
         val peerConnection: PeerConnection?
-        if (!isParticipantExists(participant)) { // create new peer connection
+        if (!isParticipantExists(participant)) {
+
+            // create new peer connection
             peerConnection = createPeerConnection(factory)
             // add participant to Room object
             //webRtcEventListener.onPeerConnectionCreated(participant)// TODO: FIX
+
+            // add participant to all participant array
+            participants.add(Participant(participant))
+
             // create correspond call model list
             val callModel = CallModel()
             callModel.participant = participant
             callModel.peerConnection = peerConnection
+
             // start stream
             val callModelWithSenders: CallModel? =
                 startStreamingVideo(callModel, videoTrackFromCamera)
+
             // push call model
             callModels.add(callModelWithSenders)
+
         } else { // get peer connection by existed id
             peerConnection = getCallModelById(participant)?.peerConnection
         }
         return peerConnection!!
+    }
+
+    override fun addOnIceCandidateListener(onIceCandidate: ((String?, String?, Int) -> Unit?)?) {
+        this.onIceCandidateListener = onIceCandidate
     }
 
     private fun startStreamingVideo(
@@ -214,6 +238,12 @@ class WebrtcHelper : WebrtcHelperInterface {
                     TAG,
                     "onIceCandidate: "
                 )
+
+                onIceCandidateListener?.let {
+                    it(iceCandidate.sdp,
+                        iceCandidate.sdpMid,
+                        iceCandidate.sdpMLineIndex)
+                }
             }
 
             override fun onIceCandidatesRemoved(iceCandidates: Array<IceCandidate>) {
@@ -230,6 +260,8 @@ class WebrtcHelper : WebrtcHelperInterface {
                 )
                 val remoteVideoTrack = mediaStream.videoTracks[0]
                 remoteVideoTrack.setEnabled(true)
+
+                webRtcEventListener.onRemoteTrackAdded(remoteVideoTrack, participants)
             }
 
             override fun onRemoveStream(mediaStream: MediaStream) {
@@ -300,12 +332,15 @@ class WebrtcHelper : WebrtcHelperInterface {
     ) {
         val peerConnection = getPeerConnection(participant, videoTrackFromCamera)
         val sdpMediaConstraints = MediaConstraints()
-        peerConnection.createOffer(object : MySdpObserver {
+        peerConnection.createOffer(object : MySdpObserver() {
             override fun onCreateSuccess(p0: org.webrtc.SessionDescription?) {
                 peerConnection.setLocalDescription(this, p0)
+                val mSessionDescription = SessionDescription()
+                mSessionDescription.sessionDesctiption = p0?.description!!
                 sdpCallBack.onSdpCreated(
                     participant,
-                    SessionDescription().also { p0?.description })
+                    mSessionDescription
+                )
             }
         }, sdpMediaConstraints)
     }
@@ -317,10 +352,15 @@ class WebrtcHelper : WebrtcHelperInterface {
     ) {
         val peerConnection = getPeerConnection(participant, videoTrackFromCamera)
         val sdpMediaConstraints = MediaConstraints()
-        peerConnection.createAnswer(object : MySdpObserver {
+        peerConnection.createAnswer(object : MySdpObserver() {
             override fun onCreateSuccess(p0: org.webrtc.SessionDescription?) {
                 peerConnection.setLocalDescription(this, p0)
-                sdpCallBack.onSdpCreated(participant, SessionDescription().also { p0?.description })
+
+                val mSessionDescription = SessionDescription()
+                mSessionDescription.sessionDesctiption = p0?.description!!
+
+
+                sdpCallBack.onSdpCreated(participant, mSessionDescription)
             }
         }, sdpMediaConstraints)
     }
@@ -341,17 +381,20 @@ class WebrtcHelper : WebrtcHelperInterface {
 
     override fun addRemoteSdp(
         participant: String,
-        sessionDescription: SessionDescription,
+        sessionDescription: org.webrtc.SessionDescription,
         videoTrackFromCamera: VideoTrack
     ) {
         val peerConnection = getPeerConnection(participant, videoTrackFromCamera)
 
-        val sd = SessionDescription(
-            org.webrtc.SessionDescription.Type.ANSWER,
-            sessionDescription.sessionDesctiption
-        )
+        peerConnection.setRemoteDescription(object : MySdpObserver() {}, sessionDescription)
+    }
 
-        peerConnection.setRemoteDescription(object : MySdpObserver {}, sd)
+    override fun addWebRtcListener(webRtcEventListener: WebRtcEventListener) {
+        this.webRtcEventListener = webRtcEventListener
+    }
+
+    override fun participants(): ArrayList<Participant> {
+        return participants
     }
 
     private fun createAudioConstraints(speaker: Boolean) {

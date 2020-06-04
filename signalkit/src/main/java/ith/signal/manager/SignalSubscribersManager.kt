@@ -33,6 +33,7 @@ class SignalSubscribersManager {
     }
 
     fun connectionChanged(signalState: SignalState) {
+
         when (signalState.status) {
             SignalState.Status.CONNECTED -> {
                 subscribers.forEach {

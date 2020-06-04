@@ -1,9 +1,9 @@
 package ithd.call.sdp
 
 class SessionDescription {
-    val sessionDesctiption: String = ""
-    val candidateRes: String = ""
-    val sdpMidRes: String = ""
-    val sdpType: String = ""
-    val sdpMidLineIndex: Int = 0
+    var sessionDesctiption: String = ""
+    var candidateRes: String = ""
+    var sdpMidRes: String = ""
+    var sdpType: String = ""
+    var sdpMidLineIndex: Int = 0
 }

@@ -36,7 +36,9 @@ class SocketIO : SignalAction {
      */
     override fun sendSignal(signal: Signal) {
         ObjectHelper.requireNonNull(signal, "Signal can't be null")
-        socket.emit(signalOption.eventName, signal.get().toString())
+        socket.emit(signalOption.eventName, signal.get().toString(), {
+            println()
+        })
     }
 
     /**
@@ -44,10 +46,9 @@ class SocketIO : SignalAction {
      */
     private fun listenSocket() {
         socket.on(signalOption.eventName) {
-            subscriberManager.onSignal(Signal(it))
+            subscriberManager.onSignal(Signal(it[0]))
         }
 
-        // listen server response
         // listen server response
         socket.on(
             Socket.EVENT_CONNECT
