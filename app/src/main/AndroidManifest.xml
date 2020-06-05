@@ -28,19 +28,15 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".view.SplashActivity">
+        <activity android:name=".view.TutorialActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ConnectRoomActivity">
-
-        </activity>
-        <activity android:name=".view.VideoCallActivity">
-
-        </activity>
+        <activity android:name=".view.ConnectRoomActivity"></activity>
+        <activity android:name=".view.VideoCallActivity"></activity>
     </application>
 
 </manifest>
