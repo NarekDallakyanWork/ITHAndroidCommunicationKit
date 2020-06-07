@@ -2,7 +2,6 @@ package ithd.communication.kit.view.tutorial
 
 import android.content.Context
 import android.graphics.Typeface
-import android.icu.lang.UProperty.INT_START
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder

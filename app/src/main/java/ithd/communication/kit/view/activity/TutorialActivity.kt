@@ -1,4 +1,4 @@
-package ithd.communication.kit.view
+package ithd.communication.kit.view.activity
 
 import android.os.Bundle
 import android.view.WindowManager

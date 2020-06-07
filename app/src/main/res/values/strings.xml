@@ -2,7 +2,7 @@
     <string name="app_name">ITHAndroidCommunicationKit</string>
     <string name="room_name">Choose a room name</string>
     <string name="conferrence_call">Conferrence call</string>
-    <string name="join_room">Join room</string>
+    <string name="join_room">JOIN ROOM</string>
     <string name="welcome">Welcome!</string>
     <string name="welcome_text">Unlimited\nfree communication kit\nfor all platforms</string>
 </resources>

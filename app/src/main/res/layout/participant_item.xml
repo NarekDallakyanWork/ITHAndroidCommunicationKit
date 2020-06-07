@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="120dp"
+        android:layout_height="170dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="15dp">
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <org.webrtc.SurfaceViewRenderer
+               android:id="@+id/localVideo"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toTopOf="parent" />
+
+           <LinearLayout
+               android:id="@+id/nameLayout"
+               android:layout_alignParentBottom="true"
+               android:background="@color/black_transparent"
+               android:orientation="horizontal"
+               android:layout_width="match_parent"
+               android:layout_height="20dp">
+
+               <TextView
+                   android:id="@+id/nameText"
+                   android:layout_marginStart="10dp"
+                   android:textColor="@color/white"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"/>
+           </LinearLayout>
+       </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
