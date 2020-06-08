@@ -33,7 +33,7 @@ class TutorialActivity : AppCompatActivity() {
         val fragments = ArrayList<Fragment>()
         fragments.add(WelcomeFragment())
         fragments.add(VideoCallTutorialFragment())
-        fragments.add(MessagingTutorialFragment())
+        fragments.add(ScreenShareTutorialFragment())
         fragments
     }
 }

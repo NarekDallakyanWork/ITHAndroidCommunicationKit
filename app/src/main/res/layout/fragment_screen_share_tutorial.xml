@@ -5,22 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".view.tutorial.VideoCallTutorialFragment">
+    tools:context=".view.tutorial.ScreenShareTutorialFragment">
 
     <ImageView
         android:scaleType="fitCenter"
         android:id="@+id/imageView2"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="260dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="40dp"
-        android:src="@drawable/video_call_thumbnail"
+        android:src="@drawable/screen_share_thumbnail"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/nextLayout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -39,9 +38,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Video group call"
+            android:text="Share screen"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/nextLayout"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/next_yellow_button"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_marginStart="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Next"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="1dp"
+            android:src="@drawable/next_icon" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

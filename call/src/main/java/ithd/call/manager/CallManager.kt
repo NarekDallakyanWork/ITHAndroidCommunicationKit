@@ -130,6 +130,7 @@ class CallManager(
 
     fun addOnIceCandidateListener(onIceCandidate: ((String?, String?, Int) -> Unit?)?) {
         this.onIceCandidate = onIceCandidate
+        webrtcHelper.addOnIceCandidateListener(onIceCandidate)
     }
 
     fun participants(): List<Participant>? {
